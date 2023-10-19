@@ -44,7 +44,7 @@ command was `cat FILE`.
 All is based on the fact that the backquote-form is simple character
 substitution, while every `$()`-construct opens an own, subsequent
 parsing step. Everything inside `$()` is interpreted as if written
-normal on a commandline. No special escaping of **nothing** is needed:
+normal on a commandline. No special escaping is needed:
 
     echo "$(echo "$(ls)")" # nested double-quotes - no problem
 
