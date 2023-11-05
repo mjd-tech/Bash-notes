@@ -10,7 +10,7 @@ Problem:
 Solution:
 
 - encode the password with base64, and store it in a file.
-- For example: \$HOME/.config/foo
+- For example: `$HOME/.config/foo`
 - the script decodes this file with base64 -d
 
 
@@ -28,6 +28,7 @@ Solution:
 Another method is good old ROT13 (or ROT47) ROT13 only handles ASCII
 letters, so you could use ROT47 to handle some punctuation as well.
 
+``` bash
+ROT13=$(echo mypassword | tr 'A-Za-z' 'N-ZA-Mn-za-m')
+ROT47=$(echo mypassword | tr '!-~' 'P-~!-O')
 ```
-ROT13=$(echo password | tr 'A-Za-z' 'N-ZA-Mn-za-m')
-ROT47=$(echo password | tr '!-~' 'P-~!-O')

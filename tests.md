@@ -7,7 +7,7 @@ There are two forms of testing in Bash
 
 If portability is not a concern, the second form is highly recommended.
 
-## The test and `[` command
+## The `test` and `[` command
 
 These two are equivalent:
 
@@ -33,7 +33,7 @@ Some simple tests:
 ## String Tests
 
 | Operator | Description                                   |
-|----------|-----------------------------------------------|
+| -------- | --------------------------------------------- |
 | =        | equal                                         |
 | !=       | not equal                                     |
 | `<`      | less than. First string sorts before second   |
@@ -42,13 +42,19 @@ Some simple tests:
 | -z       | null string                                   |
 
 If no operator given, it is equivalent to -n  
+``` bash
+# These are equivalent
+[ -n $var ]
+[ $var ]
+```
+
 Note: the `<` and `>` operators are used by the shell for redirection, you
 must escape them using `\`.
 
 ## Arithmetic tests
 
 | Operator | Description           |
-|----------|-----------------------|
+| -------- | --------------------- |
 | -eq      | equal                 |
 | -ne      | not equal             |
 | -lt      | less than             |
@@ -59,7 +65,7 @@ must escape them using `\`.
 ## File tests
 
 | Operator | Description                                       |
-|----------|---------------------------------------------------|
+| -------- | ------------------------------------------------- |
 | -b       | block device                                      |
 | -c       | character device                                  |
 | -d       | directory                                         |
@@ -87,17 +93,17 @@ must escape them using `\`.
 ## Other
 
 | Operator | Description                                           |
-|----------|-------------------------------------------------------|
+| -------- | ----------------------------------------------------- |
 | -a       | binary operator, combine expressions with logical AND |
 | -o       | binary operator, combine expressions with logical OR  |
 | -o       | as a unary operator, test if shell option is set      |
 
 ## `[[` and `((`
 
-The `[[` operator is a shell keyword, whereas test and `[` are commands.
-`[[` is easier to use as it does not word split parameter expansions
+- The `[[` operator is a shell keyword, whereas test and `[` are commands.
+- `[[` is easier to use as it does not word split parameter expansions
 and does not require escaping `<` and `>`. 
-It also adds features that test and `[` do not have.
+- It also adds features that test and `[` do not have.
 
 
 STRING = (or ==) PATTERN
@@ -112,7 +118,7 @@ STRING =~ REGEX
 
 True if the string matches the regex pattern. The regex pattern
 should be unquoted.
-Best is to put the regex in a variable, then expand the unquoted
+Best to put the regex in a variable, then expand the unquoted
 variable.
 
 
@@ -134,6 +140,7 @@ second expression if the first already turns out to be true
 
 
 -v varname
+
 True if the shell variable varname is set (has been assigned a
 value). This will work with the test and [ built-ins, but is not
 portable, ie wont work in Dash or Busybox Ash.
@@ -142,25 +149,25 @@ portable, ie wont work in Dash or Busybox Ash.
 The `(( ))` compound command evaluates an arithmetic expression. It is a
 shortcut for the built-in "let" command.
 
-| operator                            | description                             |
-|-------------------------------------|-----------------------------------------|
-| id++ id--                           | variable post-increment, post-decrement |
-| ++id --id                           | variable pre-increment, pre-decrement   |
-| - +                                 | unary minus, plus                       |
-| ! ~                                 | logical and bitwise negation            |
-| `**`                                | exponentiation                          |
-| `* / %`                             | multiplication, division, remainder     |
-| + -                                 | addition, subtraction                   |
-| `<< >>`                             | left and right bitwise shifts           |
-| `<= >= < >`                         | comparison                              |
-| == !=                               | equality, inequality                    |
-| &                                   | bitwise AND                             |
-| ^                                   | bitwise XOR                             |
-| `|`                                 | bitwise OR                              |
-| &&                                  | logical AND                             |
-| `||`                                | logical OR                              |
-| expr ? expr : expr                  | conditional operator                    |
-| `= *= /= %= += -= <<= >>= &= ^= |=` | assignment                              |
+| operator                             | description                             |
+| ------------------------------------ | --------------------------------------- |
+| `id++ id--`                          | variable post-increment, post-decrement |
+| `++id --id`                          | variable pre-increment, pre-decrement   |
+| `- +`                                | unary minus, plus                       |
+| `! ~`                                | logical and bitwise negation            |
+| `**`                                 | exponentiation                          |
+| `* / %`                              | multiplication, division, remainder     |
+| `+ -`                                | addition, subtraction                   |
+| `<< >>`                              | left and right bitwise shifts           |
+| `<= >= < >`                          | comparison                              |
+| `== !=`                              | equality, inequality                    |
+| `&`                                  | bitwise AND                             |
+| `^`                                  | bitwise XOR                             |
+| `\|`                                 | bitwise OR                              |
+| `&&`                                 | logical AND                             |
+| `\|\|`                               | logical OR                              |
+| `expr ? expr : expr`                 | conditional operator                    |
+| `= *= /= %= += -= <<= >>= &= ^= \|=` | assignment                              |
 
 You do not need to escape operators between (( and )). Arithmetic is
 done on integers. Division by 0 causes an error, but overflow does not.

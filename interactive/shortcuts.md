@@ -3,17 +3,17 @@
 Note: these shortcuts are for Bash in emacs mode (default). See vi mode
 below for vim-style keybindings.
 
-| THE Most useful shortcut! |                                                                 |
-|---------------------------|-----------------------------------------------------------------|
-| `Tab`                     | Complete partially typed command, path, variable, hostname, etc |
-| `Ctrl-v Tab`              | Insert a literal tab. Can also do `Ctrl-v Ctrl-i`               |
+| Shortcut     | Description                                                     |
+| ------------ | --------------------------------------------------------------- |
+| `Tab`        | Complete partially typed command, path, variable, hostname, etc |
+| `Ctrl-v Tab` | Insert a literal tab. Can also do `Ctrl-v Ctrl-i`               |
 
 ## Emacs mode (default)
 
 ### Movement
 
-|          |                                |
-|:---------|:-------------------------------|
+| Shortcut | Description                    |
+| :------- | :----------------------------- |
 | `Home`   | Move to the beginning of line. |
 | `End`    | Move to the end of line.       |
 | `→`      | Move forward a character.      |
@@ -23,17 +23,17 @@ below for vim-style keybindings.
 
 ### Editing
 
-|                 |                                                                                                      |
-|:----------------|:-----------------------------------------------------------------------------------------------------|
-| `Del`           | Delete the character under the cursor.                                                               |
-| `Backspace`     | Delete the character to the left of the cursor.                                                      |
-| `Alt r`         | Revert. Undo all changes made to this line.                                                          |
-| `Ctrl x Ctrl e` | Open command line in \$EDITOR, if \$EDITOR is vim, :wq to execute, :q to leave vim without executing |
+| Shortcut        | Description                                                                                      |
+| :-------------- | :----------------------------------------------------------------------------------------------- |
+| `Del`           | Delete the character under the cursor.                                                           |
+| `Backspace`     | Delete the character to the left of the cursor.                                                  |
+| `Alt r`         | Revert. Undo all changes made to this line.                                                      |
+| `Ctrl x Ctrl e` | Open command line in EDITOR, if EDITOR is vim, :wq to execute, :q to leave vim without executing |
 
 ### Other
 
-|                |                                                                                  |
-|----------------|----------------------------------------------------------------------------------|
+| Shortcut       | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
 | `Ctrl c`       | Kill the current process.                                                        |
 | `Ctrl z`       | Suspend. Stop the program and put it in the background. Type `fg` to restart it. |
 | `Ctrl d`       | End of File. If typed at the command prompt, exits the shell.                    |
@@ -55,76 +55,76 @@ this in .bashrc
 
     bind -m vi-insert "\C-l":clear-screen
 
-| Shortcut                                                       | Description                                                                                                 |
-|:---------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| ESC                                                            | Switch to command mode.                                                                                     |
-| i                                                              | Insert before cursor.                                                                                       |
-| a                                                              | Insert after cursor.                                                                                        |
-| I                                                              | Insert at the beginning of line.                                                                            |
-| A                                                              | Insert at the end of line.                                                                                  |
-| c\<mov. comm\>                                                 | Change text of a movement command \<mov. comm\> (see below).                                                |
-| C                                                              | Change text to the end of line (equivalent to c\$).                                                         |
-| cc or S                                                        | Change current line (equivalent to 0c\$).                                                                   |
-| s                                                              | Delete a single character under the cursor and enter input mode (equivalent to c\[SPACE\]).                 |
-| r                                                              | Replaces a single character under the cursor (without leaving command mode).                                |
-| R                                                              | Replaces characters under cursor.                                                                           |
-| v                                                              | Edit (and execute) the current command in the text editor, defined in \$VISUAL or \$EDITOR variables, or vi |
-| Basic Movement Commands (in command mode):                     |                                                                                                             |
-| h or ←                                                         | Move one character left.                                                                                    |
-| l or →                                                         | Move one character right.                                                                                   |
-| w                                                              | Move one word or token right.                                                                               |
-| b                                                              | Move one word or token left.                                                                                |
-| W                                                              | Move one non-blank word right.                                                                              |
-| B                                                              | Move one non-blank word left.                                                                               |
-| e                                                              | Move to the end of the current word.                                                                        |
-| E                                                              | Move to the end of the current non-blank word.                                                              |
-| 0                                                              | Move to the beginning of line                                                                               |
-| ^                                                              | Move to the first non-blank character of line.                                                              |
-| \$                                                             | Move to the end of line.                                                                                    |
-| %                                                              | Move to the corresponding opening/closing bracket.                                                          |
-| Character Finding Commands (these are also Movement Commands): |                                                                                                             |
-| fc                                                             | Move right to the next occurance of char c.                                                                 |
-| Fc                                                             | Move left to the previous occurance of c.                                                                   |
-| tc                                                             | Move right to the next occurance of c, then one character backward.                                         |
-| Tc                                                             | Move left to the previous occurance of c, then one character forward.                                       |
-| ;                                                              | Redo the last character finding command.                                                                    |
-| ,                                                              | Redo the last character finding command in opposite direction.                                              |
-| \|                                                             | Move to the n-th column (you may specify the argument n by typing it on number keys, for example, 20\|)     |
-| Deletion Commands:                                             |                                                                                                             |
-| x                                                              | Delete a single character under the cursor.                                                                 |
-| X                                                              | Delete a character before the cursor.                                                                       |
-| d\<mov. comm\>                                                 | Delete text of a movement command \<mov. comm\> (see above).                                                |
-| D                                                              | Delete to the end of the line (equivalent to d\$).                                                          |
-| dd                                                             | Delete current line (equivalent to 0d\$).                                                                   |
-| CTRL-w                                                         | Delete the previous word.                                                                                   |
-| CTRL-u                                                         | Delete from the cursor to the beginning of line.                                                            |
-| Undo, Redo and Copy/Paste Commands:                            |                                                                                                             |
-| u                                                              | Undo previous text modification.                                                                            |
-| U                                                              | Undo all previous text modifications.                                                                       |
-| .                                                              | Redo the last text modification.                                                                            |
-| y\<mov. comm\>                                                 | Yank a movement into buffer (copy).                                                                         |
-| yy                                                             | Yank the whole line.                                                                                        |
-| p                                                              | Insert the yanked text at the cursor.                                                                       |
-| P                                                              | Insert the yanked text before the cursor.                                                                   |
-| Command History:                                               |                                                                                                             |
-| k                                                              | Insert the yanked text before the cursor.                                                                   |
-| j                                                              | Insert the yanked text before the cursor.                                                                   |
-| G                                                              | Insert the yanked text before the cursor.                                                                   |
-| /string or CTRL-r                                              | Search history backward for a command matching string.                                                      |
-| ?string                                                        | Search history forward for a command matching string.                                                       |
-| n                                                              | Repeat search in the same direction as previous.                                                            |
-| N                                                              | Repeat search in the opposite direction as previous.                                                        |
-| Completion commands:                                           |                                                                                                             |
-| TAB or = or                                                    | List all possible completions.                                                                              |
-| CTRL-i                                                         |                                                                                                             |
-| \*                                                             | Insert all possible completions.                                                                            |
-| Miscellaneous commands:                                        |                                                                                                             |
-| ~                                                              | Invert case of the character under cursor and move a character right.                                       |
-| \#                                                             | Prepend '#' (comment character) to the line and send it to the history.                                     |
-| \_                                                             | Inserts the n-th word of the previous command in the current line.                                          |
-| 0, 1, 2, ...                                                   | Sets the numeric argument.                                                                                  |
-| CTRL-v                                                         | Insert a character literally (quoted insert).                                                               |
-| CTRL-r                                                         | Transpose (exchange) two characters.                                                                        |
+| Shortcut                                   | Description                                                                                         |
+| :----------------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| ESC                                        | Switch to command mode.                                                                             |
+| i                                          | Insert before cursor.                                                                               |
+| a                                          | Insert after cursor.                                                                                |
+| I                                          | Insert at the beginning of line.                                                                    |
+| A                                          | Insert at the end of line.                                                                          |
+| c\<mov. comm\>                             | Change text of a movement command \<mov. comm\> (see below).                                        |
+| C                                          | Change text to the end of line (equivalent to c\$).                                                 |
+| cc or S                                    | Change current line (equivalent to 0c\$).                                                           |
+| s                                          | Delete a single character under the cursor and enter input mode (equivalent to c\[SPACE\]).         |
+| r                                          | Replaces a single character under the cursor (without leaving command mode).                        |
+| R                                          | Replaces characters under cursor.                                                                   |
+| v                                          | Edit (and execute) current command in text editor, defined in \$VISUAL or \$EDITOR variables, or vi |
+| Basic Movement Commands (in command mode): |                                                                                                     |
+| h or ←                                     | Move one character left.                                                                            |
+| l or →                                     | Move one character right.                                                                           |
+| w                                          | Move one word or token right.                                                                       |
+| b                                          | Move one word or token left.                                                                        |
+| W                                          | Move one non-blank word right.                                                                      |
+| B                                          | Move one non-blank word left.                                                                       |
+| e                                          | Move to the end of the current word.                                                                |
+| E                                          | Move to the end of the current non-blank word.                                                      |
+| 0                                          | Move to the beginning of line                                                                       |
+| ^                                          | Move to the first non-blank character of line.                                                      |
+| \$                                         | Move to the end of line.                                                                            |
+| %                                          | Move to the corresponding opening/closing bracket.                                                  |
+| Character Finding Commands                 | (these are also Movement Commands)                                                                  |
+| fc                                         | Move right to the next occurance of char c.                                                         |
+| Fc                                         | Move left to the previous occurance of c.                                                           |
+| tc                                         | Move right to the next occurance of c, then one character backward.                                 |
+| Tc                                         | Move left to the previous occurance of c, then one character forward.                               |
+| ;                                          | Redo the last character finding command.                                                            |
+| ,                                          | Redo the last character finding command in opposite direction.                                      |
+| n\|                                        | Move to the n-th column, for example, 20\|                                                          |
+| Deletion Commands:                         |                                                                                                     |
+| x                                          | Delete a single character under the cursor.                                                         |
+| X                                          | Delete a character before the cursor.                                                               |
+| d\<mov. comm\>                             | Delete text of a movement command \<mov. comm\> (see above).                                        |
+| D                                          | Delete to the end of the line (equivalent to d\$).                                                  |
+| dd                                         | Delete current line (equivalent to 0d\$).                                                           |
+| CTRL-w                                     | Delete the previous word.                                                                           |
+| CTRL-u                                     | Delete from the cursor to the beginning of line.                                                    |
+| Undo, Redo and Copy/Paste Commands:        |                                                                                                     |
+| u                                          | Undo previous text modification.                                                                    |
+| U                                          | Undo all previous text modifications.                                                               |
+| .                                          | Redo the last text modification.                                                                    |
+| y\<mov. comm\>                             | Yank a movement into buffer (copy).                                                                 |
+| yy                                         | Yank the whole line.                                                                                |
+| p                                          | Insert the yanked text at the cursor.                                                               |
+| P                                          | Insert the yanked text before the cursor.                                                           |
+| Command History:                           |                                                                                                     |
+| k                                          | Insert the yanked text before the cursor.                                                           |
+| j                                          | Insert the yanked text before the cursor.                                                           |
+| G                                          | Insert the yanked text before the cursor.                                                           |
+| /string or CTRL-r                          | Search history backward for a command matching string.                                              |
+| ?string                                    | Search history forward for a command matching string.                                               |
+| n                                          | Repeat search in the same direction as previous.                                                    |
+| N                                          | Repeat search in the opposite direction as previous.                                                |
+| Completion commands:                       |                                                                                                     |
+| TAB or = or                                | List all possible completions.                                                                      |
+| CTRL-i                                     |                                                                                                     |
+| \*                                         | Insert all possible completions.                                                                    |
+| Miscellaneous commands:                    |                                                                                                     |
+| ~                                          | Invert case of the character under cursor and move a character right.                               |
+| \#                                         | Prepend '#' (comment character) to the line and send it to the history.                             |
+| \_                                         | Inserts the n-th word of the previous command in the current line.                                  |
+| 0, 1, 2, ...                               | Sets the numeric argument.                                                                          |
+| CTRL-v                                     | Insert a character literally (quoted insert).                                                       |
+| CTRL-r                                     | Transpose (exchange) two characters.                                                                |
 
 ## Emacs mode - complete List
 

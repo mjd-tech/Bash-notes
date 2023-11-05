@@ -1,89 +1,58 @@
 # Subshells
+Here is a classic example of the subshell "gotcha"
+```bash
+linecount=0
+echo -e "foo\nbar" |
+    while read -r; do
+        linecount=$((linecount + 1))
+    done
+echo "Line Count = $linecount"
+# Displays 0, we expected 2
+```
 
-A subshell is a child process launched by a shell (or shell script).
+- The "while" loop is the last element of a pipeline, it runs in a subshell.
+- The subshell receives a **copy** of linecount, not a "pointer" to linecount
+- linecount is incremented **only within the subshell**
 
-- A separate instance of the command processor.
-- inherits a *copy* of the current "environment" variables (i.e. PATH,
-  HOME, etc), file descriptors, and all the variables and functions that
-  you have defined in your script or your interactive session.
-- Shell scripts run in a subshell (child process) of the parent shell.
-- A shell script can itself launch subshells.
-- Within the subshell, if you change any variables, working directory,
-  etc, they will not be visible back in the parent shell.
-- The subshell is destroyed after the last command is executed.
+Fix #1: Don't use a pipe. Use command substitution with "herestring" redirection 
+```bash
+linecount=0
+while read -r; do
+    linecount=$((linecount + 1))
+done <<< "$(echo -e "foo\nbar")"
+echo "Line Count = $linecount"
+# Displays 2, as expected
+```
+- "while" loops can use redirection just like a regular command
+- command substitution produces a string.
+- "herestring" feeds the string to the stdin of the while loop
 
-Subshells are useful when you need to execute a block of code that uses
+Fix #2: prevent the "while" loop running in a subshell"
+```bash
+# Put this in your script
+shopt -s lastpipe
+```
+
+## Intentional and unintentional subshells
+Intentional Subshells are used when you need to execute a block of code that uses
 a different working directory or some different environment variables,
 and you don't want to bother saving and restoring these things.
 
 You can use a subshell explicitly, by putting a block of code in
-parentheses ( code... )
+parentheses `( cmds... )`
 
 But the shell can use a subshell without your asking for it. The most
-notorious example is the last command in a pipeline.
+notorious case is the last command in a pipeline.
 
-Here is a classic example of the subshell "gotcha"
+## Things that launch a subshell
+- Command expansion: `$(grep foo myfile)`
+- Process substitution: `somecmd < <(grep foo myfile)`
+- Commands explicitly subshelled with (): `( grep foo myfile )`
+- pipelines: somecmd | anothercmd | yetanothercmd
 
-    # Works only in ksh88/ksh93, or bash 4.2 with lastpipe enabled, i.e. shopt -s lastpipe
-    # In other shells, this will print 0
-
-    linecount=0
-
-    printf '%s\n' foo bar |
-      while read -r line
-      do
-          linecount=$((linecount + 1))
-      done
-
-      echo "total number of lines: $linecount"
-
-The reason for this is that the "while" loop is the last element of a
-pipeline, and by default Bash runs the last element of a pipeline in a
-subshell. The while loop above is executed in a new subshell, so it gets
-its own copy of the variable *linecount* created with the initial value
-of '0' taken from the parent shell. This copy then is used for counting.
-When the while loop is finished, the subshell copy is discarded, and the
-original variable *linecount* of the parent (whose value hasn't changed)
-is used in the echo command.
-
-Here is a list of commands that in some way fail to set foo=bar for
-subsequent commands  
-(note that all the examples set it in some subshell, and can use it
-until the subshell ends):
-
-# Commands that launch a subshell
-
-**Executing other programs or scripts**
-
-    ./setmyfoo
-    foo=bar ./something
-
-**Anywhere in a pipeline in Bash**
-
-    true | foo=bar | true
-
-**Any command that executes new shells**
-
-    awk '{ system("foo=bar") }'h
-    find . -exec bash -c 'foo=bar' \;
-
-**Backgrounded commands and coprocs**
-
-    foo=bar &
-    coproc foo=bar
-
-**Command expansion** true "\$(foo=bar)"
-
-**Process substitution** true \< \<(foo=bar)
-
-**Commands explicitly subshelled with ()** ( foo=bar )
-
-and probably some more that I'm forgetting.
-
-# Using subshells to our advantage
-
-Trying to set a variable, option or working dir within a subshell will
-result in the changes not being visible in the "parent" shell.
+## Using subshells to your advantage
+Setting a variable, option or working directory within a subshell will
+not be visible in the "parent" shell.
 
 ``` bash
 # cd to each dir and run make
@@ -101,6 +70,9 @@ fields=(a b c); oldIFS=$IFS; IFS=':'; echo ${fields[*]}; IFS=$oldIFS;
 # Limit scope of options
 ( set -e; foo; bar; baz; ) 
 ```
+
+See:   
+https://unix.stackexchange.com/questions/421020/what-is-the-exact-difference-between-a-subshell-and-a-child-process
 
 ## From the Bash Manual...
 
