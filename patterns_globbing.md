@@ -8,14 +8,14 @@ BASH offers three kinds of pattern matching.
 
 ## Glob
 
-| Pattern   | Description |
-|-----------|--------------------------------------------------------------- |
-| `*`        | Matches any string, of any length                             |
-| `foo*`     | Matches any string beginning with foo                         |
-| `*foo*`    | Matches any string containing foo (beginning, middle or end)  |
-| `*.tar.gz` | Matches any string ending with .tar.gz                        |
-| `*.[ch]`   | Matches any string ending with .c or .h but not .ch           |
-| `foo?`     | Matches food or foot but not foobar                           |
+| Pattern    | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| `*`        | Matches any string, of any length                            |
+| `foo*`     | Matches any string beginning with foo                        |
+| `*foo*`    | Matches any string containing foo (beginning, middle or end) |
+| `*.tar.gz` | Matches any string ending with .tar.gz                       |
+| `*.[ch]`   | Matches any string ending with .c or .h but not .ch          |
+| `foo?`     | Matches food or foot but not foobar                          |
 
 When matching **filenames**, the `*` and `?` characters will NOT match a slash (/) character.  
 When matching **strings**, the `*` and `?` characters WILL match a slash (/) character.
@@ -35,23 +35,23 @@ may be matched by including it as the first character in the set.
 
 ### Character classes
 
-| Class        | Description                               | Equivalent                                      |
-|:-------------|:------------------------------------------|:------------------------------------------------|
-| `[:alnum:]`  | Alphanumeric (letters or digits)          | `a-zA-Z0-9`                                   |
-| `[:alpha:]`  | Alphabetic (upper and lower case letters) | `a-zA-Z`                                      |
-| `[:blank:]`  | Space and tab                             | ` \t`                                         |
-| `[:cntrl:]`  | Control characters                        | `octal codes 000 through 037, and 177 (DEL)`   |                            |
-| `[:digit:]`  | Numbers in decimal                        | `0-9`                                         |
-| `[:graph:]`  | Printable characters excluding space      | `[:alnum:]` and `[:punct:]`                   |
-| `[:lower:]`  | Lowercase letters                         | `a-z`                                         |
-| `[:print:]`  | Printable characters including space      | `[:alnum:]` `[:punct:]` and space             |
-| `[:punct:]`  | Punctuation and symbols                   | `!"#$%&'() ...etc`                              |
-| `[:space:]`  | All whitespace characters                 | ` \t\r\n\v\f`                                 |
-| `[:upper:]`  | Uppercase letters                         | `A-Z`                                         |
-| `[:xdigit:]` | Hexadecimal digits                        | `A-Fa-f0-9`                                   |
+| Class        | Description                               | Equivalent                                   |
+| :----------- | :---------------------------------------- | :------------------------------------------- |
+| `[:alnum:]`  | Alphanumeric (letters or digits)          | `a-zA-Z0-9`                                  |
+| `[:alpha:]`  | Alphabetic (upper and lower case letters) | `a-zA-Z`                                     |
+| `[:blank:]`  | Space and tab                             | ` \t`                                        |
+| `[:cntrl:]`  | Control characters                        | `octal codes 000 through 037, and 177 (DEL)` |
+| `[:digit:]`  | Numbers in decimal                        | `0-9`                                        |
+| `[:graph:]`  | Printable characters excluding space      | `[:alnum:]` and `[:punct:]`                  |
+| `[:lower:]`  | Lowercase letters                         | `a-z`                                        |
+| `[:print:]`  | Printable characters including space      | `[:alnum:]` `[:punct:]` and space            |
+| `[:punct:]`  | Punctuation and symbols                   | `!"#$%&'() ...etc`                           |
+| `[:space:]`  | All whitespace characters                 | ` \t\r\n\v\f`                                |
+| `[:upper:]`  | Uppercase letters                         | `A-Z`                                        |
+| `[:xdigit:]` | Hexadecimal digits                        | `A-Fa-f0-9`                                  |
 
 **Note:** In actual usage these character classes will be inside brackets, thus:  
-`[[:alpha:]]`` (match a letter), but could also be ``[[:alpha:]7]` (match a letter or 7)
+`[[:alpha:]]` (match a letter), but could also be `[[:alpha:]7]` (match a letter or 7)
 
 ### globstar
 Off by default. Enable with: `shopt -s globstar`
@@ -107,7 +107,7 @@ separated by the pipe `|` character.
 - The syntax is: `[[ string =~ regex ]]`, usually used within an `if...then...else` statement
 
 | Condition                     | exit code                         |
-|-------------------------------|-----------------------------------|
+| ----------------------------- | --------------------------------- |
 | string matches pattern        | 0 (true)                          |
 | string does not match pattern | 1 (false)                         |
 | invalid pattern syntax        | shell **aborts** with exit code 2 |

@@ -63,75 +63,75 @@ str=${str// /-}
 ### Format Specifiers
 (see `man 3 printf` for complete list)
 
-|Format|Description|
-|---|---|
-|`%s`|String, do not interpret backslash escapes|
-|`%b`|Like %s, does interpret backslash escapes|
-|`%q`|Prints argument **shell-quoted**, reusable as input|
-|`%d`|Integer|
-|`%x`|Hexadecimal, lower-case (a-f)|
-|`%#x`|same, with leading `0x`|
-|`%X`|Hexadecimal, upper-case (A-F)|
-|`%#X`|same, with leading `0X`|
-|`%f`|Floating point, defaults to 6 decimal places |
-|`%e`|Floating point, in exponential notation `12345±e10` format|
-|`%E`|Same as `%e`, but with an upper-case `E` in the printed format|
-|`%%`|Produces a literal `%` (percent sign)|
+| Format | Description                                                    |
+| ------ | -------------------------------------------------------------- |
+| `%s`   | String, do not interpret backslash escapes                     |
+| `%b`   | Like %s, does interpret backslash escapes                      |
+| `%q`   | Prints argument **shell-quoted**, reusable as input            |
+| `%d`   | Integer                                                        |
+| `%x`   | Hexadecimal, lower-case (a-f)                                  |
+| `%#x`  | same, with leading `0x`                                        |
+| `%X`   | Hexadecimal, upper-case (A-F)                                  |
+| `%#X`  | same, with leading `0X`                                        |
+| `%f`   | Floating point, defaults to 6 decimal places                   |
+| `%e`   | Floating point, in exponential notation `12345±e10` format     |
+| `%E`   | Same as `%e`, but with an upper-case `E` in the printed format |
+| `%%`   | Produces a literal `%` (percent sign)                          |
 
 ### Format modifiers
 
 These are specified **between** the introductory `%` and the character
 that specifies the format:
 
-| format | description |
-|:---|:---|
-| `N` | Specifies a **minimum field width**, if text is shorter, pad with spaces, if longer, print entire field |
-| `.` | Together with a field width, **truncate** when the text is longer |
-| `*` | the width is supplied as an argument. Usage (`printf "%*s\n" 20 "test string"`) |
-| `-` | **Left-bound** text printing in the field (standard is **right-bound**) |
-| `0` | Pads numbers with zeros, not spaces |
-| `space` | Pad a positive number with a space, where a minus (`-`) is for negative numbers |
-| `+` | Prints all numbers **signed** (`+` for positive, `-` for negative) |
-| `'` | **A Single Quote**: Display the thousands grouping separator for integers. |
+| format  | description                                                                                             |
+| :------ | :------------------------------------------------------------------------------------------------------ |
+| `N`     | Specifies a **minimum field width**, if text is shorter, pad with spaces, if longer, print entire field |
+| `.`     | Together with a field width, **truncate** when the text is longer                                       |
+| `*`     | the width is supplied as an argument. Usage (`printf "%*s\n" 20 "test string"`)                         |
+| `-`     | **Left-bound** text printing in the field (standard is **right-bound**)                                 |
+| `0`     | Pads numbers with zeros, not spaces                                                                     |
+| `space` | Pad a positive number with a space, where a minus (`-`) is for negative numbers                         |
+| `+`     | Prints all numbers **signed** (`+` for positive, `-` for negative)                                      |
+| `'`     | **A Single Quote**: Display the thousands grouping separator for integers.                              |
 
 ### Escape codes
 
 - in the format string, or 
 - in an argument, if using `%b` format
 
-| Code           | Description  |
-|----------------|--------------|
-| `\"`           | double quote |
-| `\'`           | single quote |
-| `\?`           | Prints a `?` |
-| `\\`           | backslash    |
-| `\a`           | alert (BEL) (ASCII code 7 decimal) |
-| `\b`           | backspace |
-| `\c`           | produce no further output |
-| `\e`           | escape |
-| `\f`           | form feed |
-| `\n`           | newline |
-| `\r`           | carriage-return |
-| `\t`           | horizontal tab |
-| `\v`           | vertical tab |
-| `\0nnn`      | eight-bit character with octal value nnn (one to three octal digits)  |
-| `\xHH`       | eight-bit character with hex value HH (one or two hex digits)  |
-| `\uHHHH`     | Unicode character with hex value HHHH (one to four hex digits)      |
-| `\UHHHHHHHH` | Unicode character with hex value HHHHHHHH (one to eight hex digits) |
+| Code         | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| `\"`         | double quote                                                         |
+| `\'`         | single quote                                                         |
+| `\?`         | Prints a `?`                                                         |
+| `\\`         | backslash                                                            |
+| `\a`         | alert (BEL) (ASCII code 7 decimal)                                   |
+| `\b`         | backspace                                                            |
+| `\c`         | produce no further output                                            |
+| `\e`         | escape                                                               |
+| `\f`         | form feed                                                            |
+| `\n`         | newline                                                              |
+| `\r`         | carriage-return                                                      |
+| `\t`         | horizontal tab                                                       |
+| `\v`         | vertical tab                                                         |
+| `\0nnn`      | eight-bit character with octal value nnn (one to three octal digits) |
+| `\xHH`       | eight-bit character with hex value HH (one or two hex digits)        |
+| `\uHHHH`     | Unicode character with hex value HHHH (one to four hex digits)       |
+| `\UHHHHHHHH` | Unicode character with hex value HHHHHHHH (one to eight hex digits)  |
 
 
 ## Echo
 
     echo [-neE] [arg ...]
 
-`echo` outputs it's args to stdout, separated by spaces, followed by a
-newline. The return status is always `0`. `echo` doesn't interpret `--`
-as the end of options, and will simply print this string if given.
+`echo` outputs its args to stdout, separated by spaces, followed by a newline.
+The return status is always `0`.
+`echo` doesn't interpret `--` as the end of options, and will simply print this string if given.
 
 ### Options
 
-| Option | Description |
-|:-------|:------------|
-| `-n`   | No trailing newline |
+| Option | Description                          |
+| :----- | :----------------------------------- |
+| `-n`   | No trailing newline                  |
 | `-e`   | Interpret escape codes (like printf) |
 

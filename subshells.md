@@ -27,7 +27,7 @@ echo "Line Count = $linecount"
 - command substitution produces a string.
 - "herestring" feeds the string to the stdin of the while loop
 
-Fix #2: prevent the "while" loop running in a subshell"
+Fix #2: prevent the "while" loop running in a subshell
 ```bash
 # Put this in your script
 shopt -s lastpipe

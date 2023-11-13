@@ -53,7 +53,7 @@ fi
 ## Operators
 
 | Operator      | Meaning                                            |
-|:--------------|:---------------------------------------------------|
+| :------------ | :------------------------------------------------- |
 | `++ --`       | Increment and decrement, prefix and postfix        |
 | `+ - ! ~`     | Unary plus and minus; logical and bitwise negation |
 | `* / %`       | Multiplication, division, and remainder            |
@@ -64,13 +64,13 @@ fi
 | `== !=`       | Equal and not equal **comparisons**                |
 | `&`           | Bitwise AND                                        |
 | `^`           | Bitwise Exclusive OR                               |
-| `|`           | Bitwise OR                                         |
+| `\|`          | Bitwise OR                                         |
 | `&&`          | Logical AND (short-circuit)                        |
-| `||`          | Logical OR (short-circuit)                         |
+| `\|\|`        | Logical OR (short-circuit)                         |
 | `?:`          | Conditional expression                             |
 | `= += -= *=`  | Assignment operators                               |
-| `/= %= &= ^=` | :::                                                |
-| `<<= >>= |=`  | :::                                                |
+| `/= %= &= ^=` |                                                    |
+| `<<= >>= \|=` |                                                    |
 
 POSIX shell only supports these:
 
@@ -85,6 +85,4 @@ echo $(( (13+2) / (8-3) ))  # displays 3
 ```
 
 **Variables** used inside the arithmetic expansion, as in all arithmetic
-contexts, can be used with or without variable expansion:
-
-
+contexts, can be used without the leading `$`
