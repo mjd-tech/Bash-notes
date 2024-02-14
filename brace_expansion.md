@@ -14,7 +14,7 @@ cp /path/to/file{,.bak}   # expands to: cp /path/to/file /path/to/file.bak
 
 # Restore
 cp /path/to/file{.bak,}   # expands to: cp /path/to/file.bak /path/to/file
-echo {Fred,Barney,"Mr. Slate}
+echo {Fred,Barney,"Mr. Slate"}
 Fred Barney Mr. Slate
 
 # Install similarly named packages
